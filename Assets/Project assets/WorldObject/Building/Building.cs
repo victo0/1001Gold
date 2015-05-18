@@ -11,6 +11,7 @@ public class Building : WorldObject {
 	private Vector3 spawnPoint;
 
 	private bool needsBuilding = false;
+	public List<WorldObject> areaOfBuilding;
 
 	private Tower innerTower;
 
@@ -31,6 +32,7 @@ public class Building : WorldObject {
 	protected override void Update () {
 		base.Update();
 		ProcessBuildQueue();
+		ImaBuilder();
 	}
 	
 	protected override void OnGUI() {
@@ -87,6 +89,23 @@ public class Building : WorldObject {
 	}
 	public virtual void SetBuilding(Building building) {
 		//specific initialization for a unit can be specified here
+	}
+
+	public void ImaBuilder() {
+		areaOfBuilding = WorkManager.FindNearbyObjects(this.spawnPoint, 5000);
+		
+		foreach (WorldObject objet in areaOfBuilding)
+		{
+			if (objet.tag == "Building")
+			{
+				Tower newbuilding = objet.GetComponent< Tower >();
+				if (newbuilding.needsBuilding == true)
+				{
+					newbuilding.Construct (1);
+
+				}
+			}
+		}
 	}
 	
 

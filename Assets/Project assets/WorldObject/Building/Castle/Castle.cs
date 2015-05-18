@@ -7,7 +7,7 @@ public class Castle : Building {
 	public int buildSpeed;
 
 	private Building currentProject;
-	private bool building = false;
+	private bool building = true;
 	private float amountBuilt = 0.0f;
 
 	// Use this for initialization
@@ -22,13 +22,16 @@ public class Castle : Building {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
+		
+		
+
 		if(building && currentProject && currentProject.UnderConstruction()) { //gère la barre de progression de construction des tours.
 			amountBuilt += buildSpeed * Time.deltaTime;
 			int amount = Mathf.FloorToInt(amountBuilt);
 			if(amount > 0) {
 				amountBuilt -= amount;
 				currentProject.Construct(amount);
-				if(!currentProject.UnderConstruction()) building = false;
+				//if(!currentProject.UnderConstruction()) building = false;
 			}
 		}
 	}

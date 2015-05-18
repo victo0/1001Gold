@@ -60,6 +60,11 @@ public class WorldObject : MonoBehaviour {
 		{
 			attacking = false;
 		}
+		if (this.tag == "Ennemi")
+		{
+			this.currentlySelected = true;
+
+		}
 	}
 	protected virtual void OnGUI () {
 		if (currentlySelected)DrawSelection ();
@@ -290,7 +295,21 @@ public class WorldObject : MonoBehaviour {
 			foreach(WorldObject nearbyObject in nearbyObjects) {
 				if(nearbyObject.GetPlayer() != player) enemyObjects.Add(nearbyObject);
 			}
-			WorldObject closestObject = WorkManager.FindNearestWorldObjectInListToPosition(enemyObjects, currentPosition);
+			int focus = player.focus;
+			WorldObject closestObject = new WorldObject ();
+			switch (focus)
+			{
+				case 1 :
+				closestObject = WorkManager.FindNearestWorldObjectInListToPosition(enemyObjects, currentPosition);
+				break;
+				case 2 :
+				closestObject = WorkManager.FindLowestHpWorldObjectInList(enemyObjects);
+				break;
+				case 3 :
+				closestObject = WorkManager.FindHighestHpWorldObjectInList(enemyObjects);
+				break;
+			}
+			
 			if(closestObject) BeginAttack(closestObject);
 		}
 	}

@@ -30,6 +30,7 @@ public class ProphYereus : Unit {
 			}
 		}
 		timer += Time.deltaTime;
+		SoulGenerate ();
 	}
 	public override bool CanAttack() {	 //définis que cette unité peut attaquer.
 		return true;

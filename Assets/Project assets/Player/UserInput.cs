@@ -133,8 +133,10 @@ public class UserInput : MonoBehaviour {
 				GameObject hoverObject = WorkManager.FindHitObject(Input.mousePosition);
 				if(hoverObject) {
 					if (hoverObject.tag == "Ennemi") { 
+
 					}
 					if(player.SelectedObject) player.SelectedObject.SetHoverState(hoverObject);
+					
 					else if(hoverObject.tag != "Ground") {
 						Player owner = hoverObject.transform.root.GetComponent< Player >();
 						if(owner) {

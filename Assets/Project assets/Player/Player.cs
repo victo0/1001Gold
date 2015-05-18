@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
 	private Building tempBuilding;
 	private Building tempCreator;
 	private bool findingPlacement = false;
-	public int focus;
+	public int focus = 1;
 
 	// Use this for initialization
 	void Start () { //Génère le HUD pour le joueur.
@@ -201,6 +201,11 @@ public class Player : MonoBehaviour {
 		Destroy(tempBuilding.gameObject);
 		tempBuilding = null;
 		tempCreator = null;
+	}
+
+	public int GetResourceValue (ResourceType type) {
+		int value = resources[type];
+		return value;
 	}
 
 }

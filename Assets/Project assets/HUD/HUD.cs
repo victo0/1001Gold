@@ -96,7 +96,7 @@ public class HUD : MonoBehaviour {
 		GUI.EndGroup();
 	}
 	private void DrawResourcesBar() { //Dessine la barre de HUD du haut.
-		GUI.skin = resourceSkin;
+		/*GUI.skin = resourceSkin;
 		GUI.BeginGroup (new Rect (0, 0, Screen.width, RESOURCE_BAR_HEIGHT));
 		GUI.Box (new Rect (0, 0, Screen.width, RESOURCE_BAR_HEIGHT), "");
 
@@ -106,7 +106,7 @@ public class HUD : MonoBehaviour {
 		textLeft += TEXT_WIDTH;
 		DrawResourceIcon(ResourceType.Power, iconLeft, textLeft, topPos);
 
-		GUI.EndGroup ();
+		GUI.EndGroup ();*/
 	}
 
 
