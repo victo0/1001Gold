@@ -16,6 +16,8 @@ public class HUD : MonoBehaviour {
 	public Texture2D buttonHover, buttonClick;
 	public Texture2D buildFrame, buildMask;	
 
+	public string hover;
+
 	private const int ORDERS_BAR_WIDTH = 150, RESOURCE_BAR_HEIGHT = 40;
 	private const int SELECTION_NAME_HEIGHT = 15, SCROLL_BAR_WIDTH = 22, BUTTON_SPACING = 7;
 	private Player player;
@@ -222,9 +224,12 @@ public class HUD : MonoBehaviour {
 			Rect pos = GetButtonPos(row, column);
 			Texture2D action = ResourceManager.GetBuildImage(actions[i]);
 			if(action) {
-				if(GUI.Button(pos, action)) {
+				//if(GUI.Button(pos, new GUIContent ("Click me", action, "This is the tooltip"))){
+				if (GUI.Button (pos, new GUIContent ( action, actions[i]))) {
 					if(player.SelectedObject) player.SelectedObject.PerformAction(actions[i]);
 				}
+				hover = GUI.tooltip;
+				Debug.Log (hover);
 			}
 		}
 		GUI.EndGroup();
