@@ -9,8 +9,7 @@ using TD;
 public class Vagues
 {
     public string name;
-    public List<Unit> ennemis;
-    
+    public List<Unit> ennemis;    
 }
 
 public class Spawner : MonoBehaviour
@@ -26,6 +25,7 @@ public class Spawner : MonoBehaviour
 	private int activeUnitNumber;
     private float timer;
 	private int waveCount;
+	public bool launching = false;
 
     private Vector3 spawnSpot;
     
@@ -61,12 +61,28 @@ public class Spawner : MonoBehaviour
 		if (activeUnitNumber >= waveCount)
 		{
 			onGoing = false;
-			if(timer >= waveDelay)
+			if(timer >= waveDelay && launching == true)
 			{
 				timer = 0;
 				NextWave ();
 			}
+			else
+			{
+				launching = false;
+
+			}
 		}  
+
+		if (Input.GetKeyDown (KeyCode.P)) {
+			if (Time.timeScale == 1){
+				Time.timeScale = 0;
+			}
+			else
+			{
+				Time.timeScale = 1;
+			}
+			
+		}
 	}
 
     public void NextWave()
@@ -85,7 +101,7 @@ public class Spawner : MonoBehaviour
 
     private void WaveSpawn()
     {
-        if (timer >= spawnDelay)
+        if (timer >= spawnDelay && launching == true)
 		{
 			timer = 0.0f;
 			activeUnit =  currentWave.ennemis [activeUnitNumber];

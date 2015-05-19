@@ -308,6 +308,9 @@ public class WorldObject : MonoBehaviour {
 				case 3 :
 				closestObject = WorkManager.FindHighestHpWorldObjectInList(enemyObjects);
 				break;
+				default :
+				closestObject = WorkManager.FindNearestWorldObjectInListToPosition(enemyObjects, currentPosition);
+				break;
 			}
 			
 			if(closestObject) BeginAttack(closestObject);

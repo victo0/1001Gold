@@ -9,6 +9,7 @@ public class NewHUD : MonoBehaviour {
 
 	public Player player;
 	public HUD oldHUD;
+	public Spawner spawner;
 	protected int soulNumber;
 	protected int hpNumber;
 	protected string soulNumberString;
@@ -19,10 +20,13 @@ public class NewHUD : MonoBehaviour {
 	public Image tooltip;
 	public Sprite ttEfrit, ttElephant, ttProph, ttSirene, ttSoldier;
 	protected string actualTt;
+	public Image statusButton;
+	public Text statusButtonText;
+
 	
 	// Use this for initialization
 	void Start () {
-	
+		spawner.launching = false;
 	}
 	
 	// Update is called once per frame
@@ -35,6 +39,15 @@ public class NewHUD : MonoBehaviour {
 		hpNumberAff.text = (hpNumberString);
 		actualTt = oldHUD.hover;
 		tooltipUp();
+		if (spawner.launching)
+		{
+			statusButton.enabled = false;
+			statusButtonText.enabled = false;
+		}
+		else {
+			statusButton.enabled = true;
+			statusButtonText.enabled = true;
+		}
 	}
 
 	public void FocusChange (int focus)
@@ -72,5 +85,10 @@ public class NewHUD : MonoBehaviour {
 			break;
 
 		}
+	}
+
+	public void launchingStatus () {
+		spawner.launching = !spawner.launching;
+		
 	}
 }

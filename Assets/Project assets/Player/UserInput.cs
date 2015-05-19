@@ -44,6 +44,27 @@ public class UserInput : MonoBehaviour {
 			player.hud.SetCursorState(CursorState.PanUp);
 			mouseScroll = true;
 		}
+		if (Input.GetKey (KeyCode.DownArrow)) {
+			movement.z -= ResourceManager.ScrollSpeed;
+			player.hud.SetCursorState(CursorState.PanDown);
+			mouseScroll = true;
+		}
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			movement.x += ResourceManager.ScrollSpeed;
+			player.hud.SetCursorState(CursorState.PanRight);
+			mouseScroll = true;
+		}
+		if (Input.GetKey (KeyCode.UpArrow)) {
+			movement.z += ResourceManager.ScrollSpeed;
+			player.hud.SetCursorState(CursorState.PanUp);
+			mouseScroll = true;
+		}
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			movement.x -= ResourceManager.ScrollSpeed;
+			player.hud.SetCursorState(CursorState.PanLeft);
+			mouseScroll = true;
+		}
+	
 		
 		//make sure movement is in the direction the camera is pointing
 		//but ignore the vertical tilt of the camera to get sensible scrolling
@@ -152,8 +173,9 @@ public class UserInput : MonoBehaviour {
 		}
 	}
 	private void TestClick () {
-		if (Input.GetKeyDown (KeyCode.T)) {
+		if (Input.GetKey (KeyCode.T)) {
 			Debug.Log ("Test Ultime" );
 		}
+		
 	}
 }
