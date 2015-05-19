@@ -136,7 +136,7 @@ public class Tower : Building {
 		if (actionToPerform == "Tower") {
 			
 		} else {
-			CreateUnit (actionToPerform);
+			if ((innerPopulation+buildQueue.Count) < maxPopulation) CreateUnit (actionToPerform);
 		}
 	}
 

@@ -1,5 +1,4 @@
-﻿//http://stormtek.geek.nz/rts_tutorial
-
+﻿
 using UnityEngine;
 using System.Collections;
 

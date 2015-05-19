@@ -11,6 +11,8 @@ public class DayAndNightCycle : MonoBehaviour
 	public int timerDayAndNight; // timer that increments over time
 	public int dayTime; // time before day
 	public int nightTime; // time before night
+
+	public Spawner spawner;
 	public static bool day; // checks if it's day time
 
 	public static int numberOfLifes;
@@ -33,7 +35,7 @@ public class DayAndNightCycle : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		timerDayAndNight++; // increment timer over time
+		if (spawner.launching == true && spawner.pause == false) 	timerDayAndNight++; // increment timer over time
 
 		if (day == true && timerDayAndNight >= nightTime) // if it's day time and timer reaches time before 
 		{

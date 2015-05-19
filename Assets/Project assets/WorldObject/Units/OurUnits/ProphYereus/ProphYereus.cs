@@ -11,6 +11,8 @@ public class ProphYereus : Unit {
 	
 	private Quaternion targetRotation;
 	protected Quaternion aimRotation;
+
+	public Spawner spawner;
 	
 	
 	
@@ -61,7 +63,7 @@ public class ProphYereus : Unit {
 
 	//Génération de Ressources de nuit (toutes les 2 secondes,)
 	public void SoulGenerate () {
-		if (!dayNightCycle && timer >= delayGold){
+		if (!dayNightCycle && timer >= delayGold && spawner.pause == false){
 			controlledPlayer =(Player)GameObject.FindWithTag("Player").GetComponent(typeof(Player));
 			controlledPlayer.AddResource (ResourceType.Money, goldNight);
 			timer = 0;

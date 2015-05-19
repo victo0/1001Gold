@@ -28,6 +28,8 @@ public class Spawner : MonoBehaviour
 	public bool launching = false;
 
     private Vector3 spawnSpot;
+
+	public bool pause = true;
     
     private void Start()
     {
@@ -61,16 +63,22 @@ public class Spawner : MonoBehaviour
 		if (activeUnitNumber >= waveCount)
 		{
 			onGoing = false;
-			if(timer >= waveDelay && launching == true)
-			{
+			if(timer >= waveDelay )
+			{	
+				pause = true;		
+				if (launching == true)
+				{
 				timer = 0;
 				NextWave ();
-			}
-			else
-			{
+				}
+				else
+				{
 				launching = false;
-
+				}
+				launching = false;
+				
 			}
+			
 		}  
 
 		if (Input.GetKeyDown (KeyCode.P)) {
@@ -87,13 +95,14 @@ public class Spawner : MonoBehaviour
 
     public void NextWave()
     {
+		pause = false;
 		activeUnitNumber = 0;
 		currentWave = wavesList [activeWave];
 		activeUnit = currentWave.ennemis [activeUnitNumber];
 		onGoing = true;
 		activeWave++;
 		waveCount = currentWave.ennemis.Count;
-		if (activeWave >= (wavesList.Count+1))
+		if (activeWave >= (wavesList.Count))
 		{
 			onGoing = false;
 		}
